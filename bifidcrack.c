@@ -110,8 +110,9 @@ char *bifidDecipher(char *key, int period, char *text, char *result, int len){
             b = text[i+((period+j)/2)];
 
             /*if (index(key,a) == NULL || index(key,b) == NULL) break;*/
-            a_ind = (int)(index(key,a) - key);
-            b_ind = (int)(index(key,b) - key);
+            // index = POSIX depreciated. Replace with strchr and cast correct type
+            a_ind = (int)(strchr(key, (int)a) - (const char *)key);
+            b_ind = (int)(strchr(key, (int)b) - (const char *)key);
             a_row = a_ind / 5;
             b_row = b_ind / 5;
             a_col = a_ind % 5;
